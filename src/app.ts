@@ -15,7 +15,7 @@ config({
   path:"./.env"
 })
 
-const mongo_uri = process.env.DATABASE_URI || ""
+const mongo_uri = process.env.DATABASE_URI || "" as string;
 const stripe_key  = process.env.STRIPE_API_KEY || ""
 
 connectDB(mongo_uri);

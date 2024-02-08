@@ -142,7 +142,7 @@ const getAllProducts = tryCatch(
     const skip = (page - 1) * limit;
 
     const BaseQuery: baseQuery = {};
-
+    
     if (search)
       BaseQuery.name = {
         $regex: search,
