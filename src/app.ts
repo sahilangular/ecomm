@@ -2,7 +2,8 @@ import express from "express";
 import userRoutes from "./routes/user.js";
 import productRoutes from "./routes/product.js";
 import paymentRoutes from "./routes/payment.js";
-import { connectDB } from "./utils/feature.js";
+import { calculatePercentage, connectDB } from "./utils/feature.js";
+import cartRoute  from "./routes/cart.js";
 import { errorMiddleWare } from "./middleware/error.js";
 import orderRoutes from './routes/order.js'
 import dashBoardRoutes from './routes/stats.js'
@@ -10,6 +11,7 @@ import {config} from 'dotenv'
 import morgan from 'morgan';
 import Stripe from "stripe";
 import cors from 'cors'
+import { calculatePrice } from "./controllers/cart.js";
 
 config({
   path:"./.env"
@@ -35,10 +37,12 @@ app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/order", orderRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/dashboard", dashBoardRoutes);
+app.use("/api/v1/cart", cartRoute);
 
 app.use('/uploads',express.static('uploads'));
 
 app.use(errorMiddleWare)
+
 
 app.listen(8080, () => {
   console.log("server running in 8080");

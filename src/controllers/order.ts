@@ -4,6 +4,7 @@ import { newOrderRequestBody } from "../types/types.js";
 import orderModel from "../models/orders.js";
 import { reduceStock } from "../utils/feature.js";
 import errorHandler from "../utils/utility-class.js";
+import cartModel from "../models/cart.js";
 
 const newOrder = tryCatch(
   async (

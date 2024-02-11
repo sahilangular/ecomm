@@ -24,6 +24,17 @@ export interface getProductQueryParams {
   page?: number;
 }
 
+ export type cartInfo ={
+  productId:string,
+  name:string,
+  price:number,
+  photo:string,
+  quantity:number,
+  stock:number
+  user:string
+}
+
+
 export interface orderItemsType{
   name:string,
   photo:string,
@@ -67,3 +78,7 @@ export type errorController = (
   res: Response,
   next: NextFunction
 ) => Promise<Response<any, Record<string, any>> | Error | void>;
+
+export type reqQuery={
+  discount:number
+}

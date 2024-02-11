@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 import { orderItemsType } from "../types/types.js";
 import productModel from "../models/product.js";
 import errorHandler from "./utility-class.js";
+import cartModel from "../models/cart.js";
 
 interface myDocument extends Document {
   createdAt: Date;
@@ -13,7 +14,7 @@ interface func {
   length: number;
   docArr: myDocument[];
   today: Date;
-  property?: 'discount'| 'total';
+  property?: "discount" | "total";
 }
 
 export const connectDB = (uri: string) => {
@@ -37,6 +38,10 @@ export const reduceStock = async (orderItems: orderItemsType[]) => {
     product.stock -= order.quantity;
 
     await product.save();
+
+    console.log(order.productId);
+
+    await cartModel.findOneAndDelete({ productId: order.productId });
   }
 };
 

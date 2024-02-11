@@ -5,10 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node dist/app.js",
-    "build": "tsc",
-    "watch": "tsc -w",
-    "dev": "nodemon dist/app.js"
+    "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\""
   },
   "author": "",
   "license": "ISC",
@@ -34,3 +31,5 @@
     "typescript": "^5.3.3"
   }
 }
+
+
